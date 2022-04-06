@@ -1,0 +1,15 @@
+.status {
+    background-color: #526e4f;
+    margin: 1vh;
+  }
+
+  .board-row{
+    background-color: black;
+
+  }
+  .boton{
+    background-color: #526e4f;
+    margin: 1vh;
+    max-width: 30vh;
+    font-size: 5px;
+  }
