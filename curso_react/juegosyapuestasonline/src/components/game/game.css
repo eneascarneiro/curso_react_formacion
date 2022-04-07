@@ -1,0 +1,24 @@
+.square{
+    background-color: white;
+    height: 10vh;
+    width: 10vh;
+    padding: 0px;
+  }
+  .status {
+    background-color: #526e4f;
+    margin: 1vh;
+  }
+
+  .board-row{
+    background-color: black;
+    margin: auto;
+    width:34vh;
+    padding-left : 2vh;
+
+  }
+  .boton{
+    background-color: #526e4f;
+    margin: 1vh;
+    max-width: 30vh;
+    font-size: 5px;
+  }
