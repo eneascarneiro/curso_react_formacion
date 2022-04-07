@@ -14,8 +14,6 @@ class Miloginfrm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            CatCargado: false,
-            userLogged: true,
             usuario: "",
             password: ""
         }
@@ -26,6 +24,8 @@ class Miloginfrm extends React.Component{
       signOut(auth).then(() => {
         // Sign-out successful.
         console.log("Adios : " + this.state.usuario);
+        this.props.logout()
+        this.props.setUser("")
         this.setState({usuario: ""});
         this.setState({password: ""});
       }).catch((error) => {
@@ -44,7 +44,8 @@ class Miloginfrm extends React.Component{
           var user = userCredential.user;
           console.log("Bienvenido " + this.state.usuario);
           //Abrir el catalogo
-          
+          this.props.login()
+          this.props.setUser( this.state.usuario)
         })
         .catch((error) => {
             var errorCode = error.code;
@@ -76,7 +77,7 @@ class Miloginfrm extends React.Component{
                           aria-describedby="emailHelp"
                           placeholder="Enter email"
                           onChange={this.setEmail}
-                         
+                          value={this.state.usuario}
                         />
                       </div>
                       <div className="form-group">
