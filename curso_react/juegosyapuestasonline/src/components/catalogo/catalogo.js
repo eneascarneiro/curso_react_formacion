@@ -66,7 +66,7 @@ class Catalogo extends React.Component {
     componentDidUpdate() 
     { 
         console.log("componentDidUpdate()"); 
-        this.props.statusCatalogo()
+        this.props.actualizarEstado()
     } 
     
     render(){
