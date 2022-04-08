@@ -2,7 +2,6 @@ import React  from "react";
 import '../styles/login.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import conectarFirebase from "../components/conectar";
-
 import { getAuth, signInWithEmailAndPassword ,signOut } from "firebase/auth";
 
 

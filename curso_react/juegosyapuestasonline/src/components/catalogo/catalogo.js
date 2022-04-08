@@ -13,32 +13,30 @@ class Catalogo extends React.Component {
         super(props);
         this.state = {
             micatalogo: [],
+            cat_cargado:false,
         }
     }
     
     componentWillMount() {
         if (this.props.statusLog){
-        // Initialize Firebase
-        //conectarFirebase()
-        /*In order to get the data from this response object, using the await keyword, call the get() method on the response object and store it inside a variable data.*/
-         //creamos el objeto para conectar a la base de datos
-         const db = getFirestore();
-         //Generamos el catálogo
-        /*getDocs(collection(db, "productos"))
-            .then(response => {
-                const data= response.get();
-                return data.json();
-
-                }).then(data => {
-
-                    this.setState({
-                    micatalogo: data
-            });
-        console.log("micatalogo state", this.state.micatalogo);
-        })*/
-
+            // Initialize Firebase
+            //conectarFirebase()
+            /*In order to get the data from this response object, using the await keyword, call the get() method on the response object and store it inside a variable data.*/
+            //creamos el objeto para conectar a la base de datos
+            const app = conectarFirebase()
+            const db = getFirestore(app);
+            // Get a list of cities from your database
             try {
-                console.log("Pendiente la lectura")      
+                console.log("Pendiente la lectura") 
+                const getProductos = async () =>{
+                    console.log("dentro")
+                    const columnasProductos = collection(db, 'productos');
+                    const productosSnapshot = await getDocs(columnasProductos);
+                    const data = productosSnapshot.docs.map(doc => doc.data());
+                    console.log(data)
+                    this.setState({ micatalogo: data,cat_cargado:true });
+                }
+                console.log(getProductos())
             } catch (error) {
                 console.log(error)
             }
@@ -66,14 +64,14 @@ class Catalogo extends React.Component {
     componentDidUpdate() 
     { 
         console.log("componentDidUpdate()"); 
-        this.props.actualizarEstado()
+        //this.props.actualizarEstado()
     } 
     
     render(){
             /*
         You can add the data to your state as shown above inside the loop. Since the Blogs collection consists of a 
         single document, your state will also contain a single item. Finally, cycle through your state and render the data on the DOM.
-        */if (this.props.statusLog){
+        */if (this.state.cat_cargado){
             return (
                 <div className="card">
                 {

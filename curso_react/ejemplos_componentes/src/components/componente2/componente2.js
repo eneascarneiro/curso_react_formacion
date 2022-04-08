@@ -3,11 +3,14 @@ import "./componente2.css";
 
 class ComponenteClase2 extends React.Component
 {
+
   componentDidMount(){
-    this.props.tellamohijo()
-    console.log("ejecutando componentDidMount ")
+    console.log("ejecutando componentDidMount antes ")
+    this.props.tellamohijo(this.props.value)
+    console.log("ejecutando componentDidMount despues")
   }
     render(){
+        
           return (
           <div>
           <h1>Soy {this.props.nombre} y me llama mi padre</h1>
