@@ -5,12 +5,10 @@ class ComponenteClase2 extends React.Component
 {
 
   componentDidMount(){
-    console.log("ejecutando componentDidMount antes ")
-    this.props.tellamohijo(this.props.value)
-    console.log("ejecutando componentDidMount despues")
+    console.log("ejecutando componentDidMount antes u soy : " + this.props.nombre )
+    this.props.tellamohijo(this.props.value,this.props.colorpelo)
   }
     render(){
-        
           return (
           <div>
           <h1>Soy {this.props.nombre} y me llama mi padre</h1>
