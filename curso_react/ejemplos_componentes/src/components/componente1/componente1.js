@@ -13,11 +13,24 @@ class ComponenteClase extends React.Component
        ultimocolorpelo:'',
     };
   }
+  hijos=[
+    {
+      nombre: "pedro",
+      edad: 45,
+      color: "rubio"
+    },
+    {
+      nombre: "pedro",
+      edad: 45,
+      color: "rubio"
+    }
+  ]
+  //Se pinta con map
   hijonombrado = async  (edad,colorpelo) => {
     console.log("llamado:" + edad + " se suma a this.state.sumaedadhijos  , " + this.state.sumaedadhijos )
     //setState se ejecuta de forma asincrona 
     // Correct
-    await  this.setState((prevState, props) => ({
+    await  this.setState((prevState,gato,props) => ({
         sumaedadhijos: prevState.sumaedadhijos + edad,
         colorespelo: prevState.colorespelo + "," + colorpelo,
         ultimocolorpelo: colorpelo,
@@ -45,8 +58,8 @@ class ComponenteClase extends React.Component
             <h1>Soy el padre  y la edad de mis hijos suma: {this.state.sumaedadhijos}</h1>
             <p> Y mis hijos son</p>
             
-            <ComponenteClase2  value={23} nombre={"luis"} colorpelo={"rubio"} tellamohijo ={(edad,colorpelo) => this.hijonombrado(edad,colorpelo)}/>
-            <ComponenteClase2 value={20}  nombre={"Pedro"} colorpelo={"moreno"} tellamohijo ={(edad,colorpelo) => this.hijonombrado(edad,colorpelo)}/>
+            <ComponenteClase2  value={23} nombre={"luis"} colorpelo={"rubio"} tellamohijo ={(uno,dos) => this.hijonombrado(uno,dos)}/>
+            <ComponenteClase2 value={20}  nombre={"Pedro"} colorpelo={"moreno"} tellamohijo ={(tres,cuatro) => this.hijonombrado(tres,cuatro)}/>
             <ComponenteClase2 value={16} nombre={"Carmen"} colorpelo={"rojo"} tellamohijo ={(edad,colorpelo) => this.hijonombrado(edad,colorpelo)}/>
             <ComponenteClase2 value={5} nombre={"luisa"} colorpelo={"verde"} tellamohijo ={(edad,colorpelo) => this.hijonombrado(edad,colorpelo)}/>
             <p> Y los colores de pelo son: {this.state.colorespelo}, y el útimo color de pelo es: {this.state.ultimocolorpelo}</p>
