@@ -57,11 +57,9 @@ class ComponenteClase extends React.Component
           <div>
             <h1>Soy el padre  y la edad de mis hijos suma: {this.state.sumaedadhijos}</h1>
             <p> Y mis hijos son</p>
-            
+            usar map
             <ComponenteClase2  value={23} nombre={"luis"} colorpelo={"rubio"} tellamohijo ={(uno,dos) => this.hijonombrado(uno,dos)}/>
-            <ComponenteClase2 value={20}  nombre={"Pedro"} colorpelo={"moreno"} tellamohijo ={(tres,cuatro) => this.hijonombrado(tres,cuatro)}/>
-            <ComponenteClase2 value={16} nombre={"Carmen"} colorpelo={"rojo"} tellamohijo ={(edad,colorpelo) => this.hijonombrado(edad,colorpelo)}/>
-            <ComponenteClase2 value={5} nombre={"luisa"} colorpelo={"verde"} tellamohijo ={(edad,colorpelo) => this.hijonombrado(edad,colorpelo)}/>
+          
             <p> Y los colores de pelo son: {this.state.colorespelo}, y el útimo color de pelo es: {this.state.ultimocolorpelo}</p>
             </div>);
     }
