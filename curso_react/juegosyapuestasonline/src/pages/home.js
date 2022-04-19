@@ -8,7 +8,7 @@ class Home extends React.Component{
       super();
     }
     render() {
-      return <div><h2 >estas en el home</h2></div>;
+      return <div className="subcontainer"><h2 >estas en el home</h2></div>;
     }
   }
 

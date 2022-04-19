@@ -10,7 +10,9 @@ import Miloginfrm from './pages/login';
 import Cabecera from './components/header';
 import PiePagina from './components/footer';
 import NAvbar from './components/Navbar';
-import Game from './components/game/game';
+import Game from './pages/game'
+import Mifrm1 from './components/ejemplo_hooks/ejemplo_input';
+import MyCustomeField from './components/ejemplo_hooks/hooks_component';
 import './App.css';
 
 
@@ -51,6 +53,9 @@ class  App extends React.Component {
           <Route path="/catalogo"  element={<Catalogo statusLog={this.state.userLogged} 
                                                       statusCatalogo={this.state.CatCargado}/>}
                                                       actualizarEstado ={() => this.actEstadoCatalogo()} />
+          <Route path="/tresenrayadup"  element={<Game statusLog={this.state.userLogged}/>} />
+          <Route path="/ejemploInputSinHooks"  element={<Mifrm1/>} />
+          <Route path="/ejemploInputConHooks"  element={<MyCustomeField/>} />
           <Route path = "/" element={<Home/>}/>
         </Routes>
         <PiePagina  txtNombre="Por José Manuel Aroca" txtURL="https://www.linkedin.com/in/josemanuelaroca/" />
