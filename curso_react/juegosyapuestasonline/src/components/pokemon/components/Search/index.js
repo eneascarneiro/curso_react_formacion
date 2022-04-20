@@ -8,7 +8,9 @@ import { API_KEY, SEARCH_ID } from "../../config/keys";
 
 
 export const Search = ({ hideButtons = false }) => {
-  const [data, setData] = useState([0]);
+
+
+  const [data, setData] = useState([]);
   const [input, setInput] = useState("");
   const [tenemosdatos, setTenemosDatos] = useState(false);
   //const history = useNavigate ();
@@ -37,7 +39,7 @@ export const Search = ({ hideButtons = false }) => {
     */
     
     fetch(
-      `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${SEARCH_ID}&q=${input}`
+      `https://pokeapi.co/api/v2/pokemon/?limit=${input}`
       )
       .then(response => {
         if (!response.ok) throw Error(response.Error);
@@ -45,12 +47,12 @@ export const Search = ({ hideButtons = false }) => {
         return response.json();
         })
       .then((result) => {
-        setData(result);
+        setData(result.results);
         console.log(result)
         setTenemosDatos(true)
       })
       .catch(error => {console.log(error)
-                        setTenemosDatos(false)
+        setTenemosDatos(false)
       });
   
   }
@@ -58,6 +60,7 @@ export const Search = ({ hideButtons = false }) => {
     e.preventDefault();
     console.log("You hit search button ->", input);
     fetchData()
+    console.log(data)
     console.log("You hit search button ->", data);
   };
   return (
@@ -79,13 +82,7 @@ export const Search = ({ hideButtons = false }) => {
             </button>
             <button variant="outlined">Voy a tener suerte</button>
           </div>
-          <div className="search__lenguages">
-            <p>Ofrecido por Google en:</p>
-            <Link to="#">English</Link>
-            <Link to="#">català</Link>
-            <Link to="#">galego</Link>
-            <Link to="#">euskara</Link>
-          </div>
+      
         </>
       ) : (
         <div className="search__buttons ">
@@ -105,17 +102,11 @@ export const Search = ({ hideButtons = false }) => {
       
         {tenemosdatos ? (
         <div className="searchPage__results">
-          <p className="searchPage__resultCount">
-            About {data?.searchInformation.formattedTotalResults} results (
-            {data?.searchInformation.formattedSearchTime} seconds) for {input}
-          </p>
-
-          {data?.items.map((item) => (
+          {data.map((item,id) => (
             <div className="searchPage__result">
-              <a href={item.link}>{item.displayLink}</a>
-              <a href={item.link} className="searchPage__resultTitle">
-                <h2>{item.title}</h2>
-              </a>
+              <div  id={item.id} key={item.id}> 
+              <label>Nombre pokemon</label> <textarea value={item.name} />
+              </div>
               <p className="searchPage__resultSnippet">{item.snippet}</p>
             </div>
           ))}

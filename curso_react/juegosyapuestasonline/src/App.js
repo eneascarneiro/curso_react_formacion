@@ -16,6 +16,7 @@ import MyCustomeField from './components/ejemplo_hooks/hooks_component';
 
 import './App.css';
 import Buscador from './components/google/buscador'
+import BuscadorPokemon from './components/pokemon/buscadorpokemon';
 
 
 
@@ -60,6 +61,7 @@ class  App extends React.Component {
           <Route path="/ejemploInputSinHooks"  element={<Mifrm1/>} />
           <Route path="/ejemploInputConHooks"  element={<MyCustomeField/>} />
           <Route path="/buscadorinternet"  element={<Buscador/>} />
+          <Route path="/buscadorpokemon"  element={<BuscadorPokemon/>} />
           <Route path = "/" element={<Home/>}/>
         </Routes>
         <PiePagina  txtNombre="Por José Manuel Aroca" txtURL="https://www.linkedin.com/in/josemanuelaroca/" />

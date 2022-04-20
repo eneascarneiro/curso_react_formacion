@@ -6,10 +6,7 @@ export const Footer = () => {
   return (
     <div className="footer">
       <div className="footer__countryInfo">
-        <p>España</p>
-      </div>
-      <div className="footer__links">
-          <Link to="https://www.pokemon.com/es/">Pokemon</Link>
+        <p>Calderon  <a className="black_text" href="https://www.pokemon.com/es/">Te invito a conocer pokemons</a> </p>
       </div>
     </div>
   );
