@@ -18,6 +18,8 @@ class NAvbar extends React.Component{
                             <li><Link className="nav-link" to="/tresenraya">Tres en raya</Link></li>
                             <li><Link className="nav-link" to="/ejemploInputSinHooks">Ejemplo Input sin hooks </Link></li>
                             <li><Link className="nav-link" to="/ejemploInputConHooks">Ejemplo Input con hooks </Link></li>
+                            <li><Link className="nav-link" to="/buscadorinternet"> Buscador </Link></li>
+
                         </ul>
                     </div>
                 </div>

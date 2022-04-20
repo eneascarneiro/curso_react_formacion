@@ -14,30 +14,49 @@ class Mifrm1 extends React.Component{
             valor_1: "",
             valor_2: "",
             valor_3: "",
+            valor_4: "",
             resultado:"",
+            resultado1:"",
         }
     }
    
     setvalor_1 = (e) => {
 
       this.setState({valor_1: e.target.value});
-      this.ConcatenaResultado(e);
+        this.ConcatenaResultado(e);
+      
     }
     setvalor_2 = (e) => {
       this.setState({valor_2: e.target.value});
-        this.ConcatenaResultado(e);
+        this.ConcatenaResultado1(e);
       }
     setvalor_3 = (e) => {
         this.setState({valor_3: e.target.value});
         this.ConcatenaResultado(e);
       }
-    
-    ConcatenaResultado (e) {
+    setvalor_4 = (e) => {
+        this.setState({valor_4: e.target.value});
+        this.ConcatenaResultado1(e);
+      }
+    ConcatenaResultado(e) {
       e.persist();
-      this.setState((prevState) => ({
-          resultado: prevState.resultado + e.target.value
+      this.setState(() => ({
+          resultado: this.state.resultado + e.target.value
         }));
-    }
+      }
+    ConcatenaResultado1(e) {
+          e.persist();
+          this.setState(() => ({
+              resultado1: this.state.resultado1 + e.target.value
+            }));
+        }
+    
+    /*ConcatenaResultado () {
+    
+      this.setState({
+          resultado: this.state.valor_1 + this.state.valor_2 + this.state.valor_3
+        });
+    }*/
     
     render(){
         return (
@@ -82,10 +101,25 @@ class Mifrm1 extends React.Component{
                           onChange={this.setvalor_3}
                         />
                       </div>
+                      <div className="form-group">
+                        <label>Valor 4</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={this.state.valor_4}
+                          id="Valor4Input"
+                          name="Valor4Input"                          
+                          placeholder="Introduce el texto"
+                          onChange={this.setvalor_4}
+                        />
+                      </div>
+                      
                       <TextField
                         value={this.state.resultado}
                         />
-                     
+                        <TextField
+                        value={this.state.resultado1}
+                        />
                     </form>
                
                   </div>

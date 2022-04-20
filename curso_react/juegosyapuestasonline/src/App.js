@@ -13,7 +13,10 @@ import NAvbar from './components/Navbar';
 import Game from './pages/game'
 import Mifrm1 from './components/ejemplo_hooks/ejemplo_input';
 import MyCustomeField from './components/ejemplo_hooks/hooks_component';
+
 import './App.css';
+import Buscador from './components/google/buscador'
+
 
 
 class  App extends React.Component {
@@ -56,6 +59,7 @@ class  App extends React.Component {
           <Route path="/tresenrayadup"  element={<Game statusLog={this.state.userLogged}/>} />
           <Route path="/ejemploInputSinHooks"  element={<Mifrm1/>} />
           <Route path="/ejemploInputConHooks"  element={<MyCustomeField/>} />
+          <Route path="/buscadorinternet"  element={<Buscador/>} />
           <Route path = "/" element={<Home/>}/>
         </Routes>
         <PiePagina  txtNombre="Por José Manuel Aroca" txtURL="https://www.linkedin.com/in/josemanuelaroca/" />
