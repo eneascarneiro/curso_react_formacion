@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  mysql-development:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: calderon
+      MYSQL_DATABASE: juegos
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3308:3306"
+    volumes:
+      - /var/lib/mysql
+       # copy the sql script to create tables
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
