@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+
+  app:
+    build: ./
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_DOCKER_PORT:$NODE_LOCAL_PORT
+    environment:
+      - DB_HOST=mysqldb
+      - DB_USER=$POSTGRESQL_USER
+      - DB_PASSWORD=$POSTGRESQL_PASSWORD
+      - DB_NAME=$POSTGRESQL_DATABASE
+      - DB_PORT=$POSTGRESQL_CONTAINER_PORT
+    stdin_open: true
+    tty: true
+volumes: 
+  db:
+ 

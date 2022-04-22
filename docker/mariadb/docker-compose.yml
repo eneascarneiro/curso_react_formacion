@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+ mariadb:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+      MYSQL_DATABASE: mybb
+      MYSQL_USER: mybb
+      MYSQL_PASSWORD: changeme
+    restart: on-failure
+    ports:
+      - "3309:3306"
+    volumes:
+      - /var/lib/mysql
+       # copy the sql script to create tables
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+

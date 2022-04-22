@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  #La base de datos ya está levantada
+  postgres:
+        image: postgres
+        restart: always
+        env_file: ./.env
+        environment: 
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgres
+        logging:
+          options:
+            max-size: 10m
+            max-file: "3"
+        ports:
+          - $POSTGRESQL_HOST_PORT:$POSTGRESQL_CONTAINER_PORT
+        extra_hosts:
+          - "host.docker.internal:$POSTGRESQL_HOST"
+        volumes:
+          - ./postgres-data:/var/lib/postgresql/data
+          # copy the sql script to create tables if not exist
+          - ./postgresql/docker_postgres_with_data-main/sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
+  app:
+    build: ./
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_DOCKER_PORT:$NODE_LOCAL_PORT
+    environment:
+      - DB_HOST=mysqldb
+      - DB_USER=$POSTGRESQL_USER
+      - DB_PASSWORD=$POSTGRESQL_PASSWORD
+      - DB_NAME=$POSTGRESQL_DATABASE
+      - DB_PORT=$POSTGRESQL_CONTAINER_PORT
+    stdin_open: true
+    tty: true
+volumes: 
+  db:
+  #– mysqldb:
+#
+#image: official Docker image
+#restart: configure the restart policy
+#env_file: specify our .env path that we will create later
+#environment: provide setting using environment variables
+#ports: specify ports will be used
+#volumes: map volume folders
+#– app:
+#
+#depends_on: dependency order, mysqldb is started before app
+#build: configuration options that are applied at build time that we defined in the Dockerfile with relative path
+#environment: environmental variables that Node application uses
+#stdin_open and tty: keep open the terminal after building container
