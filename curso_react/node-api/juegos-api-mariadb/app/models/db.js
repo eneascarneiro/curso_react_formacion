@@ -10,12 +10,12 @@ var connection = mysql.createPool({
 module.exports = connection;
 */
 
-const Pool = require('pg').Pool
-const pool = new Pool({
+const Pool = require('mariadb')
+const pool = new Pool.createPool({
   host: dbConfig.HOST,
   user: dbConfig.USER,
   password: dbConfig.PASSWORD,
   database: dbConfig.DB,
-  port: 5438,
+  port: dbConfig.port,
 })
 

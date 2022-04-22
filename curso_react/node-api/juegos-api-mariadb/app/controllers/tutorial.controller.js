@@ -12,10 +12,10 @@ exports.create = (req, res) => {
   // Create a Tutorial
   const tutorial = new Tutorial({
     title: req.body.title,
-    description: req.body.description,
+    description_libro: req.body.description_libro,
     published: req.body.published || false
   });
-
+  console.log(tutorial)
   // Save Tutorial in the database
   Tutorial.create(tutorial, (err, data) => {
     if (err)
@@ -43,7 +43,9 @@ exports.findAll = (req, res) => {
 
 // Find a single Tutorial by Id
 exports.findOne = (req, res) => {
-  Tutorial.findById(req.params.id, (err, data) => {
+  console.log(req.query)
+  console.log(req.query.id)
+  Tutorial.findById(req.query.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({

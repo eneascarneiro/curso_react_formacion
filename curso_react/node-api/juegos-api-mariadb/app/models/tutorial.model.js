@@ -1,12 +1,12 @@
 //const pool = require("./db.js");
 const dbConfig = require("../config/db.config.js");
-const Pool = require('pg').Pool
-const pool = new Pool({
+const Pool = require('mariadb')
+const pool = new Pool.createPool({
   host: dbConfig.HOST,
   user: dbConfig.USER,
   password: dbConfig.PASSWORD,
   database: dbConfig.DB,
-  port: 5438,
+  port: dbConfig.port,
 })
 // constructor
 const Tutorial = function(tutorial) {
@@ -16,9 +16,11 @@ const Tutorial = function(tutorial) {
 };
 
 Tutorial.create = (newTutorial, result) => {
-  pool.query("INSERT INTO tutorials SET ?", newTutorial, (err, res) => {
+  const arr = Object.keys(newTutorial).map((key) => [key, newTutorial[key]]);
+  console.log(arr)
+  pool.query(`INSERT INTO tutorials ( title  ,description_libro ,published  ) values ( "${newTutorial.title}","${newTutorial.description_libro}", ${newTutorial.published}) `, arr, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      console.log("error en create: ", err);
       result(err, null);
       return;
     }
@@ -29,19 +31,22 @@ Tutorial.create = (newTutorial, result) => {
 };
 
 Tutorial.findById = (id, result) => {
-  pool.query(`SELECT * FROM tutorials WHERE id = ${id}`, (err, res) => {
+  console.log(id)
+  let query = "SELECT * FROM tutorials  WHERE id = " +  id;
+
+  pool.query(query, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      console.log("error findById: ", err);
       result(err, null);
       return;
     }
-
-    if (res.length) {
-      console.log("found tutorial: ", res[0]);
-      result(null, res[0]);
+    console.log(res)
+    if (res.rowCount) {
+      console.log("found tutorial: ", res);
+      result(null, res);
       return;
     }
-
+    console.log('aqui')
     // not found Tutorial with the id
     result({ kind: "not_found" }, null);
   });
@@ -56,7 +61,7 @@ Tutorial.getAll = (title, result) => {
 
   pool.query(query, (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      console.log("error: ", res);
       result(null, err);
       return;
     }

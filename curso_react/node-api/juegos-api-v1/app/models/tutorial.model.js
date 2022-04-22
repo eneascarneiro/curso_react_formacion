@@ -6,7 +6,7 @@ const pool = new Pool({
   user: dbConfig.USER,
   password: dbConfig.PASSWORD,
   database: dbConfig.DB,
-  port: 5438,
+  port: dbConfig.port,
 })
 // constructor
 const Tutorial = function(tutorial) {
